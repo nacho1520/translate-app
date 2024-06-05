@@ -1,19 +1,34 @@
+"use client";
+
 import Translator from "@/components/Translator";
 import heroImg from "../assets/hero_img.jpg";
 import logo from "../assets/logo.svg";
+import { useState } from "react";
+
 
 const optionsLanguage = [
   {
-    "id": 1,
-    "lang": "English",
+    id: 1,
+    lang: "Detect Language",
   },
   {
-    "id": 2,
-    "lang": "French",
+    id: 2,
+    lang: "English",
+  },
+  {
+    id: 3,
+    lang: "French",
   }
 ];
 
 const Home = () => {
+  const [ selectedLang, setSelectedLang ] = useState(optionsLanguage[1]);
+
+  const handleTabChange = (tabId) => {
+    let tabSelected = optionsLanguage.find(item => item.id === tabId);
+    setSelectedLang(tabSelected);
+  };
+
   return (
     <main className="relative flex flex-col items-center pt-[92px]">
       <img 
@@ -27,8 +42,8 @@ const Home = () => {
       />
 
       <div className="grid grid-cols-2 mt-[52px] gap-4">
-        <Translator langs={ optionsLanguage } />
-        <Translator langs={ optionsLanguage } />
+        <Translator langs={ optionsLanguage } activeLang={ selectedLang } setActiveLang={ handleTabChange }/>
+        {/* <Translator langs={ optionsLanguage } /> */}
       </div>
     </main>
   );
