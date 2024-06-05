@@ -1,5 +1,10 @@
 import Tabs from "./Tabs";
 import PrimaryBtn from "./PrimaryBtn";
+import AuxiliaryBtn from "./AuxiliaryBtn";
+
+import soundImg from "../assets/sound_max_fill.svg";
+import copyImg from "../assets/Copy.svg";
+import alfaImg from "../assets/Sort_alfa.svg";
 
 const Translator = ({ input, setInput, langs, activeLang, setActiveLang }) => {
     return(
@@ -15,12 +20,40 @@ const Translator = ({ input, setInput, langs, activeLang, setActiveLang }) => {
                 value={ input }
                 onChange={(e) => setInput(e.target.value)}
                 maxLength={ 500 }
-                rows={ 5 }
+                rows={ 12 }
                 className="resize-none w-full mt-6 bg-transparent outline-none text-font-white"
             />
-            <PrimaryBtn>
-                <p>Translate</p>
-            </PrimaryBtn>
+            <div className="flex w-full justify-end mb-3">
+                <p className="text-font-gray text-xs font-medium">
+                    { input.length }/500
+                </p>
+            </div>
+            <div className="w-full flex justify-between align-top">
+                <div className="inline-flex flex-wrap gap-2">
+                    <AuxiliaryBtn>
+                        <img 
+                            src={ soundImg.src }
+                            className="w-5 h-5"
+                        />
+                    </AuxiliaryBtn>
+                    <AuxiliaryBtn>
+                        <img 
+                            src={ copyImg.src }
+                            width={ 20 }
+                            height={ 20 }
+                        />
+                    </AuxiliaryBtn>
+                </div>
+                <PrimaryBtn>
+                    <div className="inline-flex flex-wrap gap-2">
+                        <img 
+                            src={ alfaImg.src }
+                            className="w-6 h-6"
+                        />
+                        <p className="text-font-white font-bold text-base">Translate</p>
+                    </div>
+                </PrimaryBtn>
+            </div>
         </div>
     );
 };
