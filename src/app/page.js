@@ -22,7 +22,13 @@ const optionsLanguage = [
 ];
 
 const Home = () => {
+  const [ userInput, setUserInput ] = useState("Hello, how are you?");
   const [ selectedLang, setSelectedLang ] = useState(optionsLanguage[1]);
+
+  const handleInputChange = (value) => {
+    setUserInput(value);
+  };
+
 
   const handleTabChange = (tabId) => {
     let tabSelected = optionsLanguage.find(item => item.id === tabId);
@@ -42,7 +48,13 @@ const Home = () => {
       />
 
       <div className="grid grid-cols-2 mt-[52px] gap-4">
-        <Translator langs={ optionsLanguage } activeLang={ selectedLang } setActiveLang={ handleTabChange }/>
+        <Translator 
+          input={ userInput }
+          setInput={ handleInputChange }
+          langs={ optionsLanguage } 
+          activeLang={ selectedLang } 
+          setActiveLang={ handleTabChange }
+        />
         {/* <Translator langs={ optionsLanguage } /> */}
       </div>
     </main>
