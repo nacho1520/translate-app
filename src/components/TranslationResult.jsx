@@ -4,7 +4,7 @@ import AuxiliaryBtn from "./AuxiliaryBtn";
 import soundImg from "../assets/sound_max_fill.svg";
 import copyImg from "../assets/Copy.svg";
 
-const TranslationResult = ({ langs, activeLang, setActiveLang }) => {
+const TranslationResult = ({ translation, langs, activeLang, setActiveLang }) => {
     return(
         <div className="w-[560px] p-6 border border-stroke-gray bg-card-dark/80 rounded-3xl">
             <div className="border-b border-stroke-gray pb-4 pl-2">
@@ -15,7 +15,7 @@ const TranslationResult = ({ langs, activeLang, setActiveLang }) => {
                 />
             </div>
             <textarea 
-                value="Bonjour, comment allez-vous ?"
+                value={ translation }
                 maxLength={ 500 }
                 rows={ 8 }
                 disabled={ true }

@@ -6,7 +6,7 @@ import soundImg from "../assets/sound_max_fill.svg";
 import copyImg from "../assets/Copy.svg";
 import alfaImg from "../assets/Sort_alfa.svg";
 
-const Translator = ({ input, setInput, langs, activeLang, setActiveLang }) => {
+const Translator = ({ input, setInput, langs, activeLang, setActiveLang, handleClick }) => {
     return(
         <div className="w-[560px] p-6 border border-stroke-gray bg-card-gray/80 rounded-3xl">
             <div className="border-b border-stroke-gray pb-4 pl-2">
@@ -43,7 +43,9 @@ const Translator = ({ input, setInput, langs, activeLang, setActiveLang }) => {
                         />
                     </AuxiliaryBtn>
                 </div>
-                <PrimaryBtn>
+                <PrimaryBtn
+                    handleClick={ handleClick }
+                >
                     <div className="inline-flex flex-wrap gap-2">
                         <img 
                             src={ alfaImg.src }

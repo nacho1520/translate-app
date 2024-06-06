@@ -3,7 +3,7 @@
 import Translator from "@/components/Translator";
 import heroImg from "../assets/hero_img.jpg";
 import logo from "../assets/logo.svg";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import TranslationResult from "@/components/TranslationResult";
 
 
@@ -15,15 +15,18 @@ const optionsLanguage = [
   {
     id: 2,
     lang: "English",
+    value: "en",
   },
   {
     id: 3,
     lang: "French",
+    value: "fr",
   }
 ];
 
 const Home = () => {
   const [ userInput, setUserInput ] = useState("Hello, how are you?");
+  const [ userTranslated, setUserTranslated ] = useState();
   const [ selectedLang, setSelectedLang ] = useState(optionsLanguage[1]);
   const [ translateLang, setTranslateLang ] = useState(optionsLanguage[2]);
 
@@ -39,6 +42,25 @@ const Home = () => {
   const handleTranslateChange = (tabId) => {
     let tabSelected = optionsLanguage.find(item => item.id === tabId);
     setTranslateLang(tabSelected);
+  };
+
+  const translate = () => {
+    fetch(`https://api.mymemory.translated.net/get?q=${ userInput }!&langpair=${ selectedLang.value }|${ translateLang.value }`)
+      .then(response => response.json())
+      .then(data => {
+        setUserTranslated(data.responseData.translatedText);
+      })
+      .catch(error => {
+        console.log(error)
+      })
+  };
+
+  useEffect(() => {
+    translate();
+  }, []);
+
+  const manageTranslate = () => {
+    translate();
   };
 
   return (
@@ -60,8 +82,10 @@ const Home = () => {
           langs={ optionsLanguage } 
           activeLang={ selectedLang } 
           setActiveLang={ handleTabChange }
+          handleClick={ manageTranslate }
         />
         <TranslationResult 
+          translation={ userTranslated }
           langs={ optionsLanguage }
           activeLang={ translateLang }
           setActiveLang={ handleTranslateChange }
