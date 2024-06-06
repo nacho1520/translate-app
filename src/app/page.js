@@ -4,6 +4,7 @@ import Translator from "@/components/Translator";
 import heroImg from "../assets/hero_img.jpg";
 import logo from "../assets/logo.svg";
 import { useState } from "react";
+import TranslationResult from "@/components/TranslationResult";
 
 
 const optionsLanguage = [
@@ -24,15 +25,20 @@ const optionsLanguage = [
 const Home = () => {
   const [ userInput, setUserInput ] = useState("Hello, how are you?");
   const [ selectedLang, setSelectedLang ] = useState(optionsLanguage[1]);
+  const [ translateLang, setTranslateLang ] = useState(optionsLanguage[2]);
 
   const handleInputChange = (value) => {
     setUserInput(value);
   };
 
-
   const handleTabChange = (tabId) => {
     let tabSelected = optionsLanguage.find(item => item.id === tabId);
     setSelectedLang(tabSelected);
+  };
+
+  const handleTranslateChange = (tabId) => {
+    let tabSelected = optionsLanguage.find(item => item.id === tabId);
+    setTranslateLang(tabSelected);
   };
 
   return (
@@ -55,7 +61,11 @@ const Home = () => {
           activeLang={ selectedLang } 
           setActiveLang={ handleTabChange }
         />
-        {/* <Translator langs={ optionsLanguage } /> */}
+        <TranslationResult 
+          langs={ optionsLanguage }
+          activeLang={ translateLang }
+          setActiveLang={ handleTranslateChange }
+        />
       </div>
     </main>
   );

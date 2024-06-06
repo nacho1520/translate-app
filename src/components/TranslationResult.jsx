@@ -1,14 +1,12 @@
 import Tabs from "./Tabs";
-import PrimaryBtn from "./PrimaryBtn";
 import AuxiliaryBtn from "./AuxiliaryBtn";
 
 import soundImg from "../assets/sound_max_fill.svg";
 import copyImg from "../assets/Copy.svg";
-import alfaImg from "../assets/Sort_alfa.svg";
 
-const Translator = ({ input, setInput, langs, activeLang, setActiveLang }) => {
+const TranslationResult = ({ langs, activeLang, setActiveLang }) => {
     return(
-        <div className="w-[560px] p-6 border border-stroke-gray bg-card-gray/80 rounded-3xl">
+        <div className="w-[560px] p-6 border border-stroke-gray bg-card-dark/80 rounded-3xl">
             <div className="border-b border-stroke-gray pb-4 pl-2">
                 <Tabs 
                     options={ langs } 
@@ -17,18 +15,13 @@ const Translator = ({ input, setInput, langs, activeLang, setActiveLang }) => {
                 />
             </div>
             <textarea 
-                value={ input }
-                onChange={(e) => setInput(e.target.value)}
+                value="Bonjour, comment allez-vous ?"
                 maxLength={ 500 }
                 rows={ 8 }
+                disabled={ true }
                 className="resize-none w-full mt-6 bg-transparent outline-none text-font-white"
             />
-            <div className="flex w-full justify-end mb-3">
-                <p className="text-font-gray text-xs font-medium">
-                    { input.length }/500
-                </p>
-            </div>
-            <div className="w-full flex justify-between items-center">
+            <div className="w-full flex justify-between items-center mt-8">
                 <div className="inline-flex flex-wrap gap-2">
                     <AuxiliaryBtn>
                         <img 
@@ -43,18 +36,9 @@ const Translator = ({ input, setInput, langs, activeLang, setActiveLang }) => {
                         />
                     </AuxiliaryBtn>
                 </div>
-                <PrimaryBtn>
-                    <div className="inline-flex flex-wrap gap-2">
-                        <img 
-                            src={ alfaImg.src }
-                            className="w-6 h-6"
-                        />
-                        <p className="text-font-white font-bold text-base">Translate</p>
-                    </div>
-                </PrimaryBtn>
             </div>
         </div>
     );
 };
 
-export default Translator;
+export default TranslationResult;
