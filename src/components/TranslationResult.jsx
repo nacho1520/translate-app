@@ -4,7 +4,7 @@ import AuxiliaryBtn from "./AuxiliaryBtn";
 import soundImg from "../assets/sound_max_fill.svg";
 import copyImg from "../assets/Copy.svg";
 
-const TranslationResult = ({ translation, langs, activeLang, setActiveLang }) => {
+const TranslationResult = ({ translation, langs, activeLang, setActiveLang, handleCopy }) => {
     return(
         <div className="w-[560px] p-6 border border-stroke-gray bg-card-dark/80 rounded-3xl">
             <div className="border-b border-stroke-gray pb-4 pl-2">
@@ -29,7 +29,9 @@ const TranslationResult = ({ translation, langs, activeLang, setActiveLang }) =>
                             style={{ width: "20px", height: "20px" }}
                         />
                     </AuxiliaryBtn>
-                    <AuxiliaryBtn>
+                    <AuxiliaryBtn
+                        handleClick={ handleCopy }
+                    >
                         <img 
                             src={ copyImg.src }
                             style={{ width: "20px", height: "20px" }}

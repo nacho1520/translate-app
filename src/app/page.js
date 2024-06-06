@@ -44,6 +44,18 @@ const Home = () => {
     setTranslateLang(tabSelected);
   };
 
+  const copyToClipboard = (text) => {
+    navigator.clipboard.writeText(text);
+  };
+
+  const handleInputCopy = () => {
+    copyToClipboard(userInput);
+  };
+
+  const handleResultCopy = () => {
+    copyToClipboard(userTranslated);
+  };
+
   const translate = () => {
     fetch(`https://api.mymemory.translated.net/get?q=${ userInput }!&langpair=${ selectedLang.value }|${ translateLang.value }`)
       .then(response => response.json())
@@ -83,12 +95,14 @@ const Home = () => {
           activeLang={ selectedLang } 
           setActiveLang={ handleTabChange }
           handleClick={ manageTranslate }
+          handleCopy={ handleInputCopy }
         />
         <TranslationResult 
           translation={ userTranslated }
           langs={ optionsLanguage }
           activeLang={ translateLang }
           setActiveLang={ handleTranslateChange }
+          handleCopy={ handleResultCopy }
         />
       </div>
     </main>

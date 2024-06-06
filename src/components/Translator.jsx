@@ -6,7 +6,7 @@ import soundImg from "../assets/sound_max_fill.svg";
 import copyImg from "../assets/Copy.svg";
 import alfaImg from "../assets/Sort_alfa.svg";
 
-const Translator = ({ input, setInput, langs, activeLang, setActiveLang, handleClick }) => {
+const Translator = ({ input, setInput, langs, activeLang, setActiveLang, handleClick, handleCopy }) => {
     return(
         <div className="w-[560px] p-6 border border-stroke-gray bg-card-gray/80 rounded-3xl">
             <div className="border-b border-stroke-gray pb-4 pl-2">
@@ -36,7 +36,9 @@ const Translator = ({ input, setInput, langs, activeLang, setActiveLang, handleC
                             style={{ width: "20px", height: "20px" }}
                         />
                     </AuxiliaryBtn>
-                    <AuxiliaryBtn>
+                    <AuxiliaryBtn
+                        handleClick={ handleCopy }
+                    >
                         <img 
                             src={ copyImg.src }
                             style={{ width: "20px", height: "20px" }}
