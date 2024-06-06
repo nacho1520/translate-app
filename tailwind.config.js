@@ -15,6 +15,7 @@ module.exports = {
         "active-tab": "#4D5562",
         "primary-blue": "#3662E3",
         "secondary-blue": "#7CA9F3",
+        "body-black": "#040711",
       },
       backgroundImage: {
         "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",

@@ -33,14 +33,13 @@ const Translator = ({ input, setInput, langs, activeLang, setActiveLang }) => {
                     <AuxiliaryBtn>
                         <img 
                             src={ soundImg.src }
-                            className="w-5 h-5"
+                            style={{ width: "20px", height: "20px" }}
                         />
                     </AuxiliaryBtn>
                     <AuxiliaryBtn>
                         <img 
                             src={ copyImg.src }
-                            width={ 20 }
-                            height={ 20 }
+                            style={{ width: "20px", height: "20px" }}
                         />
                     </AuxiliaryBtn>
                 </div>

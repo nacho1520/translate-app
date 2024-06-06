@@ -1,6 +1,6 @@
 const AuxiliaryBtn = ({ children }) => {
     return(
-        <button className="px-2 border border-stroke-gray rounded-xl">
+        <button className="w-9 h-9 flex justify-center items-center border border-stroke-gray rounded-xl">
             {
                 children
             }
