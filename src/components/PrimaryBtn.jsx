@@ -1,6 +1,6 @@
 const PrimaryBtn = ({ children }) => {
     return(
-        <button className="bg-primary-blue rounded-xl px-6 py-3 border border-secondary-blue">
+        <button className="w-[152px] h-12 flex justify-center items-center bg-primary-blue rounded-xl border border-secondary-blue">
             {
                 children
             }
