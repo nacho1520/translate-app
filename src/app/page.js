@@ -99,7 +99,7 @@ const Home = () => {
         />
         <TranslationResult 
           translation={ userTranslated }
-          langs={ optionsLanguage }
+          langs={ optionsLanguage.filter(lang => lang.id != 1) }
           activeLang={ translateLang }
           setActiveLang={ handleTranslateChange }
           handleCopy={ handleResultCopy }
