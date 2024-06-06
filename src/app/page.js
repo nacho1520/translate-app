@@ -56,6 +56,15 @@ const Home = () => {
     copyToClipboard(userTranslated);
   };
 
+  const invertLangs = () => {
+    let inputAux = userInput;
+    let auxLang = selectedLang;
+    setUserInput(userTranslated);
+    setUserTranslated(inputAux);
+    setSelectedLang(translateLang);
+    setTranslateLang(auxLang);
+  };
+
   const translate = () => {
     fetch(`https://api.mymemory.translated.net/get?q=${ userInput }!&langpair=${ selectedLang.value }|${ translateLang.value }`)
       .then(response => response.json())
@@ -103,6 +112,7 @@ const Home = () => {
           activeLang={ translateLang }
           setActiveLang={ handleTranslateChange }
           handleCopy={ handleResultCopy }
+          handleChange={ invertLangs }
         />
       </div>
     </main>
