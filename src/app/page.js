@@ -65,6 +65,21 @@ const Home = () => {
     setTranslateLang(auxLang);
   };
 
+  const speak = (text, lang) => {
+    const synth = window.speechSynthesis;
+    const utterance = new SpeechSynthesisUtterance(text);
+    utterance.lang = lang;
+    synth.speak(utterance);
+  };
+
+  const handleInputSpeak = () => {
+    speak(userInput, selectedLang.value);
+  };
+
+  const handleResultSpeak = () => {
+    speak(userTranslated, translateLang.value);
+  };
+
   const translate = () => {
     fetch(`https://api.mymemory.translated.net/get?q=${ userInput }!&langpair=${ selectedLang.value }|${ translateLang.value }`)
       .then(response => response.json())
@@ -105,6 +120,7 @@ const Home = () => {
           setActiveLang={ handleTabChange }
           handleClick={ manageTranslate }
           handleCopy={ handleInputCopy }
+          handleSpeak={ handleInputSpeak }
         />
         <TranslationResult 
           translation={ userTranslated }
@@ -113,6 +129,7 @@ const Home = () => {
           setActiveLang={ handleTranslateChange }
           handleCopy={ handleResultCopy }
           handleChange={ invertLangs }
+          handleSpeak={ handleResultSpeak }
         />
       </div>
     </main>
