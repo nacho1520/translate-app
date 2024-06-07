@@ -91,13 +91,24 @@ const Home = () => {
       })
   };
 
+  const manageTranslate = () => {
+    translate();
+  };
+
   useEffect(() => {
     translate();
   }, []);
 
-  const manageTranslate = () => {
-    translate();
-  };
+  useEffect(() => {
+    const getData = setTimeout(() => {
+      console.log("Test");
+      translate();
+    }, 2000);
+
+    return () => clearTimeout(getData);
+  }, [userInput]);
+
+  
 
   return (
     <main className="relative flex flex-col items-center pt-[92px]">
