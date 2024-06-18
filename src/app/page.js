@@ -112,9 +112,12 @@ const Home = () => {
 
   return (
     <main className="relative flex flex-col items-center pt-[92px]">
+      <div className="absolute left-0 top-0 w-full h-[500px] bg-gradient-to-b from-body-black/10 to-body-black -z-10">
+
+      </div>
       <img 
         src={ heroImg.src }
-        className="absolute left-0 top-0 w-full h-[400px] -z-10 object-cover"
+        className="absolute left-0 top-0 w-full h-[500px] -z-20 object-cover"
       />
       <img
         src={ logo.src }
