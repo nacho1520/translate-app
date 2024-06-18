@@ -122,7 +122,7 @@ const Home = () => {
         height={ 45 }
       />
 
-      <div className="grid grid-cols-2 mt-[52px] gap-4">
+      <div className="grid grid-cols-1 xl:grid-cols-2 w-[90%] 2xl:w-[60%] mt-[52px] gap-4 content-stretch pb-5">
         <Translator 
           input={ userInput }
           setInput={ handleInputChange }

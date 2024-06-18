@@ -7,7 +7,7 @@ import changeImg from "../assets/Horizontal_top_left_main.svg";
 
 const TranslationResult = ({ translation, langs, activeLang, setActiveLang, handleCopy, handleChange, handleSpeak }) => {
     return(
-        <div className="w-[560px] p-6 border border-stroke-gray bg-card-dark/80 rounded-3xl">
+        <div className="p-6 border border-stroke-gray bg-card-dark/80 rounded-3xl">
             <div className="w-full flex justify-between items-center border-b border-stroke-gray pb-4 pl-2">
                 <Tabs 
                     options={ langs } 

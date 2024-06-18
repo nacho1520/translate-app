@@ -8,7 +8,7 @@ import alfaImg from "../assets/Sort_alfa.svg";
 
 const Translator = ({ input, setInput, langs, activeLang, setActiveLang, handleClick, handleCopy, handleSpeak }) => {
     return(
-        <div className="w-[560px] p-6 border border-stroke-gray bg-card-gray/80 rounded-3xl">
+        <div className="p-6 border border-stroke-gray bg-card-gray/80 rounded-3xl">
             <div className="border-b border-stroke-gray pb-4 pl-2">
                 <Tabs 
                     options={ langs } 
