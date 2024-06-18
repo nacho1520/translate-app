@@ -114,7 +114,7 @@ const Home = () => {
     <main className="relative flex flex-col items-center pt-[92px]">
       <img 
         src={ heroImg.src }
-        className="absolute left-0 top-[-60%] w-full h-[100vh] -z-10"
+        className="absolute left-0 top-0 w-full h-[400px] -z-10 object-cover"
       />
       <img
         src={ logo.src }
