@@ -1,5 +1,6 @@
 import Tabs from "./Tabs";
 import AuxiliaryBtn from "./AuxiliaryBtn";
+import Dropdown from "./Dropdown";
 
 import soundImg from "../assets/sound_max_fill.svg";
 import copyImg from "../assets/Copy.svg";
@@ -9,11 +10,18 @@ const TranslationResult = ({ translation, langs, activeLang, setActiveLang, hand
     return(
         <div className="p-6 border border-stroke-gray bg-card-dark/80 rounded-3xl">
             <div className="w-full flex justify-between items-center border-b border-stroke-gray pb-4 pl-2">
-                <Tabs 
-                    options={ langs } 
-                    activeLang={ activeLang }
-                    setActiveLang={ setActiveLang } 
-                />
+                <div className="inline-flex flex-wrap gap-1">
+                    <Tabs 
+                        options={ langs.slice(0,2) } 
+                        activeLang={ activeLang }
+                        setActiveLang={ setActiveLang } 
+                    />
+                    <Dropdown 
+                        options={ langs.slice(2) }
+                        activeLang={ activeLang }
+                        setActiveLang={ setActiveLang }
+                    />
+                </div>
                 <AuxiliaryBtn
                     handleClick={ handleChange }
                 >
