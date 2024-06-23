@@ -3,8 +3,8 @@
 import Translator from "@/components/Translator";
 import heroImg from "../assets/hero_img.jpg";
 import logo from "../assets/logo.svg";
-import { useState, useEffect } from "react";
 import TranslationResult from "@/components/TranslationResult";
+import useTranslation from "@/hooks/useTranslation";
 
 
 const optionsLanguage = [
@@ -17,44 +17,24 @@ const optionsLanguage = [
 ];
 
 const Home = () => {
-  const [ userInput, setUserInput ] = useState("Hello, how are you?");
-  const [ userTranslated, setUserTranslated ] = useState();
-  const [ selectedLang, setSelectedLang ] = useState(optionsLanguage[1]);
-  const [ translateLang, setTranslateLang ] = useState(optionsLanguage[2]);
+  const { state, dispatch, translate, ACTIONS } = useTranslation();
 
   const handleInputChange = (value) => {
-    setUserInput(value);
+    dispatch({ type: ACTIONS.SET_USER_INPUT, payload: value });
   };
 
   const handleTabChange = (tabId) => {
     let tabSelected = optionsLanguage.find(item => item.id === tabId);
-    setSelectedLang(tabSelected);
+    dispatch({ type: ACTIONS.SET_LANG, payload: tabSelected  });
   };
 
   const handleTranslateChange = (tabId) => {
     let tabSelected = optionsLanguage.find(item => item.id === tabId);
-    setTranslateLang(tabSelected);
+    dispatch({ type: ACTIONS.SET_TRANSLATION_LANG, payload: tabSelected });
   };
 
   const copyToClipboard = (text) => {
     navigator.clipboard.writeText(text);
-  };
-
-  const handleInputCopy = () => {
-    copyToClipboard(userInput);
-  };
-
-  const handleResultCopy = () => {
-    copyToClipboard(userTranslated);
-  };
-
-  const invertLangs = () => {
-    let inputAux = userInput;
-    let auxLang = selectedLang;
-    setUserInput(userTranslated);
-    setUserTranslated(inputAux);
-    setSelectedLang(translateLang);
-    setTranslateLang(auxLang);
   };
 
   const speak = (text, lang) => {
@@ -63,44 +43,6 @@ const Home = () => {
     utterance.lang = lang;
     synth.speak(utterance);
   };
-
-  const handleInputSpeak = () => {
-    speak(userInput, selectedLang.value);
-  };
-
-  const handleResultSpeak = () => {
-    speak(userTranslated, translateLang.value);
-  };
-
-  const translate = () => {
-    fetch(`https://api.mymemory.translated.net/get?q=${ userInput }!&langpair=${ selectedLang.value }|${ translateLang.value }`)
-      .then(response => response.json())
-      .then(data => {
-        setUserTranslated(data.responseData.translatedText);
-      })
-      .catch(error => {
-        console.log(error)
-      })
-  };
-
-  const manageTranslate = () => {
-    translate();
-  };
-
-  useEffect(() => {
-    translate();
-  }, []);
-
-  useEffect(() => {
-    const getData = setTimeout(() => {
-      console.log("Test");
-      translate();
-    }, 2000);
-
-    return () => clearTimeout(getData);
-  }, [userInput]);
-
-  
 
   return (
     <main className="relative flex flex-col items-center pt-[92px]">
@@ -119,23 +61,23 @@ const Home = () => {
 
       <div className="grid grid-cols-1 xl:grid-cols-2 w-[90%] 2xl:w-[60%] mt-[52px] gap-4 content-stretch pb-5">
         <Translator 
-          input={ userInput }
+          input={ state.userInput }
           setInput={ handleInputChange }
           langs={ optionsLanguage } 
-          activeLang={ selectedLang } 
+          activeLang={ state.selectedLang } 
           setActiveLang={ handleTabChange }
-          handleClick={ manageTranslate }
-          handleCopy={ handleInputCopy }
-          handleSpeak={ handleInputSpeak }
+          handleClick={ translate }
+          handleCopy={ () => copyToClipboard(state.userInput) }
+          handleSpeak={ () => speak(state.userInput, state.selectedLang.value) }
         />
         <TranslationResult 
-          translation={ userTranslated }
+          translation={ state.translation }
           langs={ optionsLanguage.filter(lang => lang.id != 1) }
-          activeLang={ translateLang }
+          activeLang={ state.translationLang }
           setActiveLang={ handleTranslateChange }
-          handleCopy={ handleResultCopy }
-          handleChange={ invertLangs }
-          handleSpeak={ handleResultSpeak }
+          handleCopy={ () => copyToClipboard(state.translation) }
+          handleChange={ () => dispatch({ type: ACTIONS.INVERT_STATES }) }
+          handleSpeak={ () => speak(state.translation, state.translationLang.value) }
         />
       </div>
     </main>
