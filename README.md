@@ -24,4 +24,4 @@ bun dev
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-![Screenshot 1](https://github.com/nacho1520/property-list/blob/main/public/shot1.png)
+![Screenshot 1](https://github.com/nacho1520/translate-app/blob/main/public/Shot.png)
